@@ -9,7 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@methodus/describe": "^1.0.4",
+    "@methodus/server": "^0.0.21",
     "telegraf": "^3.21.2",
-    "telegram-node-bot": "^4.0.5"
+    "telegram-node-bot": "^4.0.5",
+    "typescript": "^2.9.2"
   }
 }
