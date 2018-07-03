@@ -9,7 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Telegraf = require('telegraf');
-const db_1 = require("../db");
 const youtube_1 = require("../plugins/youtube");
 const uuidv1 = require('uuid/v1');
 const youtube = require('../plugins/youtube');
@@ -31,13 +30,13 @@ class Bot {
                     const results = yield youtube_1.searchYouTube(commandArray[1]);
                     return ctx.replyWithMediaGroup(results);
             }
-            const username = ctx.message.from.username;
-            const client = yield db_1.DB();
-            const res = yield client.query('SELECT * from public."Users" WHERE "UserName"=$1 ORDER BY "ID" ASC', [username]);
-            if (res.rows.length === 0) {
-                yield client.query('INSERT INTO public."Users"("UserName") VALUES($1)', [username]);
-                return ctx.reply(res);
-            }
+            // const username = ctx.message.from.username;
+            // const client = await DB();
+            // const res = await client.query('SELECT * from public."Users" WHERE "UserName"=$1 ORDER BY "ID" ASC', [username]);
+            // if (res.rows.length === 0) {
+            //     await client.query('INSERT INTO public."Users"("UserName") VALUES($1)', [username]);
+            //     return ctx.reply(res)
+            // }
         }));
         // bot.command('youtube',async (ctx) => {
         // )

@@ -33,15 +33,15 @@ export class Bot {
 
 
 
-            const username = ctx.message.from.username;
+            // const username = ctx.message.from.username;
 
-            const client = await DB();
-            const res = await client.query('SELECT * from public."Users" WHERE "UserName"=$1 ORDER BY "ID" ASC', [username]);
+            // const client = await DB();
+            // const res = await client.query('SELECT * from public."Users" WHERE "UserName"=$1 ORDER BY "ID" ASC', [username]);
 
-            if (res.rows.length === 0) {
-                await client.query('INSERT INTO public."Users"("UserName") VALUES($1)', [username]);
-                return ctx.reply(res)
-            }
+            // if (res.rows.length === 0) {
+            //     await client.query('INSERT INTO public."Users"("UserName") VALUES($1)', [username]);
+            //     return ctx.reply(res)
+            // }
 
 
         })
