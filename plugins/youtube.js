@@ -34,20 +34,32 @@ function searchYouTube(term) {
              * @param {function} callback The callback to call with the authorized client.
              */
             function authorize(credentials, callback) {
-                var clientSecret = credentials.installed.client_secret;
-                var clientId = credentials.installed.client_id;
-                var redirectUrl = credentials.installed.redirect_uris[0];
-                var oauth2Client = new OAuth2(clientId, clientSecret, redirectUrl);
-                // Check if we have previously stored a token.
-                fs.readFile(TOKEN_PATH, function (err, token) {
+                // configure a JWT auth client
+                let jwtClient = new google.auth.JWT(credentials.client_email, null, credentials.private_key, SCOPES);
+                //authenticate request
+                jwtClient.authorize(function (err, tokens) {
                     if (err) {
-                        getNewToken(oauth2Client, callback);
+                        console.log(err);
+                        return;
                     }
                     else {
-                        oauth2Client.credentials = JSON.parse(token);
-                        callback(oauth2Client);
+                        callback(jwtClient);
+                        console.log("Successfully connected!");
                     }
                 });
+                // var clientSecret = credentials.installed.client_secret;
+                // var clientId = credentials.installed.client_id;
+                // var redirectUrl = credentials.installed.redirect_uris[0];
+                // var oauth2Client = new OAuth2(clientId, clientSecret, redirectUrl);
+                // // Check if we have previously stored a token.
+                // fs.readFile(TOKEN_PATH, function (err, token) {
+                //   if (err) {
+                //     getNewToken(oauth2Client, callback);
+                //   } else {
+                //     oauth2Client.credentials = JSON.parse(token);
+                //     callback(oauth2Client);
+                //   }
+                // });
             }
             /**
              * Get and store new token after prompting for user authorization, and then
