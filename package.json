@@ -11,6 +11,9 @@
   "dependencies": {
     "@methodus/describe": "^1.0.4",
     "@methodus/server": "^0.0.21",
+    "google-auth-library": "^1.6.1",
+    "googleapis": "^32.0.0",
+    "pg": "^7.4.3",
     "telegraf": "^3.21.2",
     "telegram-node-bot": "^4.0.5",
     "typescript": "^2.9.2"

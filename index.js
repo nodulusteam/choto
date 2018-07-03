@@ -15,7 +15,7 @@ SetupServer = __decorate([
     server_1.PluginConfiguration('@methodus/describe')
     //@ClientConfiguration(Api, MethodType.Local, ServerType.Express)
     ,
-    server_1.ClientConfiguration(_1.Bot, "Local" /* Local */, "express" /* Express */)
+    server_1.ClientConfiguration(new _1.Bot(), "Local" /* Local */, "express" /* Express */)
 ], SetupServer);
 new SetupServer();
 //# sourceMappingURL=index.js.map
