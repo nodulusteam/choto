@@ -3,7 +3,7 @@ import { DB } from '../db';
 import { searchYouTube } from '../plugins/youtube';
 const uuidv1 = require('uuid/v1');
 
- 
+
 
 const youtube = require('../plugins/youtube');
 export class Bot {
@@ -21,11 +21,11 @@ export class Bot {
         bot.on('sticker', (ctx) => ctx.reply('👍'));
 
         bot.on('text', async (ctx: any) => {
-            let commandArray = ctx.message.text.split(' ');
-
-            switch (commandArray[0]) {
+            let command = ctx.message.text.split(' ', 1)[0];
+            const args = ctx.message.text.replace(command,'');
+            switch (command) {
                 case '/youtube':
-                    const results = await searchYouTube(commandArray[1]);
+                    const results = await searchYouTube(args);
                     return ctx.replyWithMediaGroup(results);
 
 

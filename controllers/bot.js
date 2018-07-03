@@ -24,10 +24,11 @@ class Bot {
         bot.help((ctx) => ctx.reply('Send me a sticker'));
         bot.on('sticker', (ctx) => ctx.reply('👍'));
         bot.on('text', (ctx) => __awaiter(this, void 0, void 0, function* () {
-            let commandArray = ctx.message.text.split(' ');
-            switch (commandArray[0]) {
+            let command = ctx.message.text.split(' ', 1)[0];
+            const args = ctx.message.text.replace(command, '');
+            switch (command) {
                 case '/youtube':
-                    const results = yield youtube_1.searchYouTube(commandArray[1]);
+                    const results = yield youtube_1.searchYouTube(args);
                     return ctx.replyWithMediaGroup(results);
             }
             // const username = ctx.message.from.username;
