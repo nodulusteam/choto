@@ -170,7 +170,8 @@ export async function searchYouTube(term) {
           reject(err);
         }
 
-        const item = response.data.items[0];
+        
+        const item = response.data.items.filter(item => item.id.videoId)[0];
         const results = [{
           id: item.id.videoId,
           media: {
