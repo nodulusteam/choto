@@ -170,20 +170,18 @@ export async function searchYouTube(term) {
           reject(err);
         }
 
-        const results = response.data.items.map((item) => {
-          return {
-            id: item.id.videoId,
-            media: {
-              url: item.snippet.thumbnails.default.url
-            },
-            url: 'https://www.youtube.com/watch?v=' + item.id.videoId,
-            type: 'photo',
-            caption: item.snippet.title,
-            description: item.snippet.description,
-            thumb: item.snippet.thumbnails.default.url
-          }
-        });
-
+        const item = response.data.items[0];
+        const results = [{
+          id: item.id.videoId,
+          media: {
+            url: item.snippet.thumbnails.default.url
+          },
+          url: 'https://www.youtube.com/watch?v=' + item.id.videoId,
+          type: 'photo',
+          caption: item.snippet.title,
+          description: item.snippet.description,
+          thumb: item.snippet.thumbnails.default.url
+        }];
         resolve(results);
       });
 

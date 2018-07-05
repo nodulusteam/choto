@@ -159,8 +159,8 @@ function searchYouTube(term) {
                         if (err) {
                             reject(err);
                         }
-                        const results = response.data.items.map((item) => {
-                            return {
+                        const item = response.data.items[0];
+                        const results = [{
                                 id: item.id.videoId,
                                 media: {
                                     url: item.snippet.thumbnails.default.url
@@ -170,8 +170,7 @@ function searchYouTube(term) {
                                 caption: item.snippet.title,
                                 description: item.snippet.description,
                                 thumb: item.snippet.thumbnails.default.url
-                            };
-                        });
+                            }];
                         resolve(results);
                     });
                 });

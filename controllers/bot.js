@@ -28,8 +28,29 @@ class Bot {
             const args = ctx.message.text.replace(command, '');
             switch (command) {
                 case '/youtube':
-                    const results = yield youtube_1.searchYouTube(args);
-                    return ctx.replyWithMediaGroup(results);
+                    {
+                        const results = yield youtube_1.searchYouTube(args);
+                        let html = ``;
+                        results.forEach((element) => {
+                            console.log(element);
+                            html += `<a href="${element.url}">${element.caption}</a>`;
+                        });
+                        return ctx.replyWithHTML(html);
+                    }
+                case '/pornhub':
+                    {
+                        const Pornhub = require("pornhub-api");
+                        const Videos = new Pornhub.Videos();
+                        const videos = yield Videos.searchVideos({
+                            search: args
+                        });
+                        let html = ``;
+                        videos.videos.forEach((element) => {
+                            console.log(element);
+                            html += `<a href="${element.url}">${element.title}</a>`;
+                        });
+                        return ctx.replyWithHTML(html);
+                    }
             }
             // const username = ctx.message.from.username;
             // const client = await DB();

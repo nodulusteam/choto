@@ -22,12 +22,39 @@ export class Bot {
 
         bot.on('text', async (ctx: any) => {
             let command = ctx.message.text.split(' ', 1)[0];
-            const args = ctx.message.text.replace(command,'');
+            const args = ctx.message.text.replace(command, '');
             switch (command) {
                 case '/youtube':
-                    const results = await searchYouTube(args);
-                    return ctx.replyWithMediaGroup(results);
+                    {
+                        const results: any = await searchYouTube(args);
+                        let html = ``
+                        results.forEach((element) => {
+                            console.log(element);
+                            html += `<a href="${element.url}">${element.caption}</a>`;
+                        });
 
+                        return ctx.replyWithHTML(html);
+                    }
+
+
+
+                case '/pornhub':
+                    {
+                        const Pornhub = require("pornhub-api")
+                        const Videos = new Pornhub.Videos()
+
+                        const videos = await Videos.searchVideos({
+                            search: args
+                        });
+
+                        let html = ``
+                        videos.videos.forEach((element) => {
+                            console.log(element);
+                            html += `<a href="${element.url}">${element.title}</a>`;
+                        });
+
+                        return ctx.replyWithHTML(html);
+                    }
 
             }
 
