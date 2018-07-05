@@ -14,7 +14,6 @@
     "google-auth-library": "^1.6.1",
     "googleapis": "^32.0.0",
     "pg": "^7.4.3",
-    "pornhub-api": "^0.0.1",
     "telegraf": "^3.21.2",
     "telegram-node-bot": "^4.0.5",
     "typescript": "^2.9.2"

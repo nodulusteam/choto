@@ -2,7 +2,7 @@ const Telegraf = require('telegraf')
 import { DB } from '../db';
 import { searchYouTube } from '../plugins/youtube';
 const uuidv1 = require('uuid/v1');
-
+import { Videos } from '../plugins/pornhub';
 
 
 const youtube = require('../plugins/youtube');
@@ -42,10 +42,9 @@ export class Bot {
 
                     case '/pornhub':
                         {
-                            const Pornhub = require("pornhub-api")
-                            const Videos = new Pornhub.Videos()
-
-                            const videos = await Videos.searchVideos({
+                            console.log(Videos);
+                            const videoRequest = new Videos();
+                            const videos: any = await videoRequest.searchVideos({
                                 search: args
                             });
 

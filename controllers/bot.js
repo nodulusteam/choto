@@ -11,6 +11,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Telegraf = require('telegraf');
 const youtube_1 = require("../plugins/youtube");
 const uuidv1 = require('uuid/v1');
+const pornhub_1 = require("../plugins/pornhub");
 const youtube = require('../plugins/youtube');
 class Bot {
     constructor() {
@@ -40,9 +41,9 @@ class Bot {
                         }
                     case '/pornhub':
                         {
-                            const Pornhub = require("pornhub-api");
-                            const Videos = new Pornhub.Videos();
-                            const videos = yield Videos.searchVideos({
+                            console.log(pornhub_1.Videos);
+                            const videoRequest = new pornhub_1.Videos();
+                            const videos = yield videoRequest.searchVideos({
                                 search: args
                             });
                             let html = ``;
