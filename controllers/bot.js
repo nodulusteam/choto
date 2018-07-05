@@ -24,34 +24,39 @@ class Bot {
         bot.help((ctx) => ctx.reply('Send me a sticker'));
         bot.on('sticker', (ctx) => ctx.reply('👍'));
         bot.on('text', (ctx) => __awaiter(this, void 0, void 0, function* () {
-            let command = ctx.message.text.split(' ', 1)[0];
-            const args = ctx.message.text.replace(command, '');
-            switch (command) {
-                case '/youtube':
-                    {
-                        const results = yield youtube_1.searchYouTube(args);
-                        let html = ``;
-                        results.forEach((element) => {
+            try {
+                let command = ctx.message.text.split(' ', 1)[0];
+                const args = ctx.message.text.replace(command, '');
+                switch (command) {
+                    case '/youtube':
+                        {
+                            const results = yield youtube_1.searchYouTube(args);
+                            let html = ``;
+                            results.forEach((element) => {
+                                console.log(element);
+                                html += `<a href="${element.url}">${element.caption}</a>`;
+                            });
+                            return ctx.replyWithHTML(html);
+                        }
+                    case '/pornhub':
+                        {
+                            const Pornhub = require("pornhub-api");
+                            const Videos = new Pornhub.Videos();
+                            const videos = yield Videos.searchVideos({
+                                search: args
+                            });
+                            let html = ``;
+                            const element = videos.videos[0];
+                            //videos.videos.forEach((element) => {
                             console.log(element);
-                            html += `<a href="${element.url}">${element.caption}</a>`;
-                        });
-                        return ctx.replyWithHTML(html);
-                    }
-                case '/pornhub':
-                    {
-                        const Pornhub = require("pornhub-api");
-                        const Videos = new Pornhub.Videos();
-                        const videos = yield Videos.searchVideos({
-                            search: args
-                        });
-                        let html = ``;
-                        const element = videos.videos[0];
-                        //videos.videos.forEach((element) => {
-                        console.log(element);
-                        html += `<a href="${element.url}">${element.title}</a>`;
-                        // });
-                        return ctx.replyWithHTML(html);
-                    }
+                            html += `<a href="${element.url}">${element.title}</a>`;
+                            // });
+                            return ctx.replyWithHTML(html);
+                        }
+                }
+            }
+            catch (error) {
+                console.error(error);
             }
             // const username = ctx.message.from.username;
             // const client = await DB();
