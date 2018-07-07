@@ -30,12 +30,10 @@ class Bot {
                 const args = ctx.message.text.replace(command, '');
                 switch (command) {
                     case '/list':
-                        const html = `Available commands:
-                        /red <i>keyword</i>
-                        /youtube <i>keyword</i>
-                        
-                        
-                        `;
+                        const html = `
+Available commands:
+/red <i>keyword</i>
+/youtube <i>keyword</i>`;
                         return ctx.replyWithHTML(html);
                     case '/youtube':
                         {
