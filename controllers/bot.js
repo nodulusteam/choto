@@ -41,18 +41,23 @@ class Bot {
                         }
                     case '/pornhub':
                         {
-                            console.log(pornhub_1.Videos);
-                            const videoRequest = new pornhub_1.Videos();
-                            const videos = yield videoRequest.searchVideos({
-                                search: args
-                            });
-                            let html = ``;
-                            const element = videos.videos[0];
-                            //videos.videos.forEach((element) => {
-                            console.log(element);
-                            html += `<a href="${element.url}">${element.title}</a>`;
-                            // });
-                            return ctx.replyWithHTML(html);
+                            try {
+                                console.log(pornhub_1.Videos);
+                                const videoRequest = new pornhub_1.Videos();
+                                const videos = yield videoRequest.searchVideos({
+                                    search: args
+                                });
+                                let html = ``;
+                                const element = videos.videos[0];
+                                //videos.videos.forEach((element) => {
+                                console.log(element);
+                                html += `<a href="${element.url}">${element.title}</a>`;
+                                // });
+                                return ctx.replyWithHTML(html);
+                            }
+                            catch (error) {
+                                return ctx.replyWithHTML('error');
+                            }
                         }
                 }
             }

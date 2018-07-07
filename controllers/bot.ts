@@ -42,20 +42,25 @@ export class Bot {
 
                     case '/pornhub':
                         {
-                            console.log(Videos);
-                            const videoRequest = new Videos();
-                            const videos: any = await videoRequest.searchVideos({
-                                search: args
-                            });
+                            try {
+                                console.log(Videos);
+                                const videoRequest = new Videos();
+                                const videos: any = await videoRequest.searchVideos({
+                                    search: args
+                                });
 
-                            let html = ``
-                            const element = videos.videos[0];
-                            //videos.videos.forEach((element) => {
-                            console.log(element);
-                            html += `<a href="${element.url}">${element.title}</a>`;
-                            // });
+                                let html = ``
+                                const element = videos.videos[0];
+                                //videos.videos.forEach((element) => {
+                                console.log(element);
+                                html += `<a href="${element.url}">${element.title}</a>`;
+                                // });
 
-                            return ctx.replyWithHTML(html);
+                                return ctx.replyWithHTML(html);
+                            } catch (error) {
+                                return ctx.replyWithHTML('error');
+                            }
+
                         }
 
                 }
