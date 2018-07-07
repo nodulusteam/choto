@@ -74,6 +74,8 @@ export class Videos {
             snekfetch.get(url).then(response => {
                 const parsed = JSON.parse(response.text)
                 resolve(parsed)
+            }).catch((error) => {
+                reject(error);
             })
         })
     }
