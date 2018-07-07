@@ -13,6 +13,7 @@
     "@methodus/server": "^0.0.21",
     "google-auth-library": "^1.6.1",
     "googleapis": "^32.0.0",
+    "newrelic": "^4.2.1",
     "pg": "^7.4.3",
     "snekfetch": "^4.0.4",
     "telegraf": "^3.21.2",
