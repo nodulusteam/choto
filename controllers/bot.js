@@ -11,7 +11,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Telegraf = require('telegraf');
 const youtube_1 = require("../plugins/youtube");
 const uuidv1 = require('uuid/v1');
-const pornhub_1 = require("../plugins/pornhub");
+const redtube_1 = require("../plugins/redtube");
 const youtube = require('../plugins/youtube');
 class Bot {
     constructor() {
@@ -29,6 +29,14 @@ class Bot {
                 let command = ctx.message.text.split(' ', 1)[0];
                 const args = ctx.message.text.replace(command, '');
                 switch (command) {
+                    case '/list':
+                        const html = `Available commands:
+                        /red <i>keyword</i>
+                        /youtube <i>keyword</i>
+                        
+                        
+                        `;
+                        return ctx.replyWithHTML(html);
                     case '/youtube':
                         {
                             const results = yield youtube_1.searchYouTube(args);
@@ -39,24 +47,14 @@ class Bot {
                             });
                             return ctx.replyWithHTML(html);
                         }
-                    case '/pornhub':
+                    case '/red':
                         {
                             try {
-                                console.log(pornhub_1.Videos);
-                                const videoRequest = new pornhub_1.Videos();
-                                const videos = yield videoRequest.searchVideos({
-                                    search: args
-                                });
-                                let html = ``;
-                                const element = videos.videos[0];
-                                //videos.videos.forEach((element) => {
-                                console.log(element);
-                                html += `<a href="${element.url}">${element.title}</a>`;
-                                // });
-                                return ctx.replyWithHTML(html);
+                                const videoRequest = new redtube_1.RedTube();
+                                const results = yield videoRequest.search(args);
+                                return ctx.replyWithHTML(videoRequest.format(results));
                             }
                             catch (error) {
-                                return ctx.replyWithHTML('error');
                             }
                         }
                 }

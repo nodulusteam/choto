@@ -3,7 +3,7 @@ import { DB } from '../db';
 import { searchYouTube } from '../plugins/youtube';
 const uuidv1 = require('uuid/v1');
 import { Videos } from '../plugins/pornhub';
-
+import { RedTube } from '../plugins/redtube';
 
 const youtube = require('../plugins/youtube');
 export class Bot {
@@ -16,16 +16,23 @@ export class Bot {
             });
         });
 
-
         bot.help((ctx) => ctx.reply('Send me a sticker'))
         bot.on('sticker', (ctx) => ctx.reply('👍'));
-
         bot.on('text', async (ctx: any) => {
-
             try {
                 let command = ctx.message.text.split(' ', 1)[0];
                 const args = ctx.message.text.replace(command, '');
                 switch (command) {
+
+                    case '/list':
+                        const html = `Available commands:
+                        /red <i>keyword</i>
+                        /youtube <i>keyword</i>
+                        
+                        
+                        `
+                        return ctx.replyWithHTML(html);
+
                     case '/youtube':
                         {
                             const results: any = await searchYouTube(args);
@@ -37,30 +44,15 @@ export class Bot {
 
                             return ctx.replyWithHTML(html);
                         }
-
-
-
-                    case '/pornhub':
+                    case '/red':
                         {
                             try {
-                                console.log(Videos);
-                                const videoRequest = new Videos();
-                                const videos: any = await videoRequest.searchVideos({
-                                    search: args
-                                });
-
-                                let html = ``
-                                const element = videos.videos[0];
-                                //videos.videos.forEach((element) => {
-                                console.log(element);
-                                html += `<a href="${element.url}">${element.title}</a>`;
-                                // });
-
-                                return ctx.replyWithHTML(html);
+                                const videoRequest = new RedTube();
+                                const results: any = await videoRequest.search(args);
+                                return ctx.replyWithHTML(videoRequest.format(results));
                             } catch (error) {
-                                return ctx.replyWithHTML('error');
-                            }
 
+                            }
                         }
 
                 }
