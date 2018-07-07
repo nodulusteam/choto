@@ -1,4 +1,4 @@
-
+require('newrelic');
 import { ServerConfiguration, PluginConfiguration, ClientConfiguration, ConfiguredServer, MethodType, ServerType } from '@methodus/server';
 import { Bot } from './controllers/';
  

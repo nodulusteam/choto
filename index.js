@@ -6,6 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+require('newrelic');
 const server_1 = require("@methodus/server");
 const _1 = require("./controllers/");
 let SetupServer = class SetupServer extends server_1.ConfiguredServer {
