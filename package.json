@@ -4,21 +4,26 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node build/index.js",
+    "build": "rimraf build && tsc"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@methodus/describe": "^1.0.4",
-    "@methodus/server": "^0.0.21",
+    "@methodus/contracts": "^5.0.12",
+    "@methodus/data": "^2.0.26",
+    "@methodus/describe": "^6.0.4",
+    "@methodus/google-spreadsheet": "^0.0.1",
+    "@methodus/server": "^4.0.10",
     "fetch": "^1.1.0",
     "google-auth-library": "^1.6.1",
     "googleapis": "^32.0.0",
-    "newrelic": "^4.2.1",
     "pg": "^7.4.3",
+    "rimraf": "^3.0.0",
     "snekfetch": "^4.0.4",
-    "telegraf": "^3.21.2",
+    "telegraf": "^3.33.0",
+    "telegraf-inline-menu": "^4.0.0",
     "telegram-node-bot": "^4.0.5",
-    "typescript": "^2.9.2"
+    "typescript": "^3.6.4"
   }
 }

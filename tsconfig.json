@@ -7,6 +7,8 @@
             "es2017",
             "es2015"
         ],
+        "outDir": "build",
+        "rootDir": "src",
         "declaration": true,
         "target": "es2016",
         "module": "commonjs",
@@ -18,9 +20,9 @@
         "noImplicitAny": false,
         "skipLibCheck": true,
         "suppressImplicitAnyIndexErrors": true,
+        "allowJs": false,
         "types": [
-            "node"        
-            
+            "node"
         ]
     },
     "exclude": [
