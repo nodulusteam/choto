@@ -1,5 +1,5 @@
 
-const SystemCreds = require('../../certs/client_secret.json');
+const SystemCreds = process.env.CLIENT_SECRET ? JSON.parse(process.env.CLIENT_SECRET) : require('../../certs/client_secret.json');
 import * as uuidv1 from 'uuid/v1';
 import { MethodError } from '@methodus/server';
 import { GoogleSpreadsheet } from '@methodus/google-spreadsheet';

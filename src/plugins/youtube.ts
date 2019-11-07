@@ -1,13 +1,3 @@
-import { rejects } from "assert";
-
-// AIzaSyCv86O9gAdbOVNKyubk8WyeJ7ZIsY0ImyI
-
-
-// clientid:612636802430-2cq7v5g46j8p5dbhj1uiuiufmgsa2lh4.apps.googleusercontent.com
-
-// secret: 5iJYOI5t1gdrZtTXQzUNi8uz
-
-
 
 var fs = require('fs');
 var readline = require('readline');
